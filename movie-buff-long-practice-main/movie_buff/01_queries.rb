@@ -1,3 +1,82 @@
+# Table name: actors
+#
+#  id         :bigint           not null, primary key
+#  name       :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+
+
+# class Actor < ApplicationRecord
+#   validates :name, presence: true
+
+#   has_many :castings,
+#     class_name: :Casting,
+#     foreign_key: :actor_id,
+#     primary_key: :id,
+#     dependent: :destroy
+
+#   has_many :movies,
+#     through: :castings,
+#     source: :movie
+
+#   has_many :directed_movies,
+#     class_name: :Movie,
+#     foreign_key: :director_id,
+#     primary_key: :id,
+#     dependent: :nullify
+#   end
+
+#-------------------------------------------------------------------------------------
+
+# Table name: castings
+#
+#  id         :bigint           not null, primary key
+#  actor_id   :bigint           not null
+#  movie_id   :bigint           not null
+#  ord        :integer          not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+
+# class Casting < ApplicationRecord
+#   belongs_to :actor
+#   belongs_to :movie
+# end
+
+#-------------------------------------------------------------------------------------
+
+# Table name: movies
+#
+#  id          :bigint           not null, primary key
+#  title       :string           not null
+#  yr          :integer          not null
+#  score       :float            not null
+#  votes       :integer          not null
+#  director_id :bigint
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+# class Movie < ApplicationRecord
+#   validates :title, :yr, :score, :votes, presence: true
+
+#   belongs_to :director,
+#     class_name: :Actor,
+#     foreign_key: :director_id,
+#     primary_key: :id
+
+#   has_many :castings,
+#     class_name: :Casting,
+#     foreign_key: :movie_id,
+#     primary_key: :id,
+#     dependent: :destroy
+
+#   has_many :actors,
+#     through: :castings,
+#     source: :actor
+# end
+
+#-------------------------------------------------------------------------------------
+
+
 def it_was_ok
   # Consider the following:
   #
@@ -37,7 +116,7 @@ def biggest_cast
   #
   # Find the id and title of the 3 movies with the largest casts (i.e., most
   # actors).
-  
+
 end
 
 def directed_by_one_of(them)
@@ -52,7 +131,7 @@ def directed_by_one_of(them)
   # Movie.where(yr: years)
   #
   # Find the id and title of all the movies directed by one of 'them'.
-  
+
   # Note: Directors appear in the 'actors' table.
 
 end
